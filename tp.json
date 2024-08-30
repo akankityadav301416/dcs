@@ -1,0 +1,72 @@
+{
+    "rules": [
+        {
+            "conditions": {
+                "gop": "ELSWTOK",
+                "bookingEntity": "SGSNP",
+                "source": "EOLE"
+            },
+            "config": {
+                "type": "PATH",
+                "value": "GBTO/ASIA/TOKYO/MAR/SEC/Fixed income",
+                "appPerimeter": "FB",
+                "subPerimeter": "OPER"
+            }
+        },
+        {
+            "conditions": {
+                "bookingEntity": "SGCHINA",
+                "source": "METEOR"
+            },
+            "config": {
+                "type": "BO",
+                "email": "getBOUserEmail"
+            }
+        },
+        {
+            "conditions": {
+                "source": "IMPACT"
+            },
+            "config": {
+                "type": "NON_MARK_ACTORS",
+                "email": "getNonMarkActorsEmails",
+                "alias": "GBTO"
+            }
+        },
+        {
+            "conditions": {
+                "source": "KONDOR PLUS MONTREAL"
+            },
+            "config": {
+                "type": "PATH",
+                "value": "GBTO/AMER/CANADA/MAR/GPM/FDT/US Resilience",
+                "appPerimeter": "FB",
+                "subPerimeter": "OPER"
+            }
+        },
+        {
+            "conditions": {
+                "source": "KONDOR PLUS ASIA",
+                "bookingEntity": "SGTAIP"
+            },
+            "config": {
+                "type": "PATH",
+                "value": "GBTO/ASIA/TAIPEI/MAR/OTC/SAB",
+                "appPerimeter": "FB",
+                "subPerimeter": "OPER"
+            }
+        },
+        {
+            "conditions": {
+                "source": "FIDESSA"
+            },
+            "config": {
+                "type": "PATH",
+                "value": "GBTO/EUR/LONDON/EQD/OPP/Cash Equity",
+                "appPerimeter": "FB",
+                "subPerimeter": "OPER"
+            }
+        }
+        // Add more rules here...
+    ]
+}
