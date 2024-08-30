@@ -1,26 +1,18 @@
-public static List<Rule> loadRulesFromJson(String fileName) {
-    List<Rule> rules = new ArrayList<>();
+package com.example.config;
 
-    // Parse JSON and create Rule objects
-    // Example:
-    Map<String, Object> jsonMap = parseJsonFile(fileName);
-    List<Map<String, Object>> jsonRules = (List<Map<String, Object>>) jsonMap.get("rules");
+import com.example.model.Rule;
+import com.example.model.EmailConfig;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-    for (Map<String, Object> jsonRule : jsonRules) {
-        Map<String, String> conditions = (Map<String, String>) jsonRule.get("conditions");
-        Map<String, String> configMap = (Map<String, String>) jsonRule.get("config");
+import java.io.IOException;
+import java.nio.file.Paths;
+import java.util.List;
 
-        ConditionMatcher matcher = new ConditionMatcher(conditions);
-        EmailConfig config = new SimpleEmailConfig(configMap); // SimpleEmailConfig is an implementation of EmailConfig
+public class RuleConfigLoader {
 
-        rules.add(new Rule(matcher, config));
+    public List<Rule> loadRules(String configFilePath) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        return objectMapper.readValue(Paths.get(configFilePath).toFile(),
+                objectMapper.getTypeFactory().constructCollectionType(List.class, Rule.class));
     }
-
-    return rules;
-}
-
-// Helper method to parse JSON
-private static Map<String, Object> parseJsonFile(String fileName) {
-    // Implement JSON parsing logic here
-    return new HashMap<>();
 }
